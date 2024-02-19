@@ -6,15 +6,29 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+@app.route('/wave', methods=['GET'])
+def wave():
+    name = request.args.get('name')
+
+    # Send back a fond farewell with the name
+    return f"I am waving at {name}"
+
+# @app.route('/hello', methods=['GET'])
+# def hello():curl
+#     name = request.args['name'] # The value is 'David'
+
+#     # Send back a friendly greeting with the name
+#     return f"Hello {name}!"
+
 # == Example Code Below ==
 
 # GET /emoji
 # Returns a emojiy face
 # Try it:
 #   ; curl http://127.0.0.1:5001/emoji
-@app.route('/emoji', methods=['GET'])
-def get_emoji():
-    return ":)"
+# @app.route('/emoji', methods=['GET'])
+# def get_emoji():
+#     return ":)"
 
 # This imports some more example routes for you to see how they work
 # You can delete these lines if you don't need them.
