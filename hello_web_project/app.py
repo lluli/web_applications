@@ -1,17 +1,48 @@
 import os
 from flask import Flask, request
+from lib.database_connection import *
 
 # Create a new Flask app
 app = Flask(__name__)
 
 # == Your Routes Here ==
 
-@app.route('/wave', methods=['GET'])
-def wave():
-    name = request.args.get('name')
+@app.route('/add_name', methods=['GET'])
+def add_name():
+    name = request.args['name']
+    names = 'Julia, Alice, Karim'
+    return f'{names}, {name}'
 
-    # Send back a fond farewell with the name
-    return f"I am waving at {name}"
+
+
+@app.route('/sort-names', methods=['POST'])
+def order_names():
+    names = request.form['names'].split(',')
+    ordered_names = sorted(names)
+    return ','.join(ordered_names)
+
+
+@app.route('/count_vowels', methods=['POST'])
+def count_vowels():
+    word = request.form['text']    
+    vowel_count = 0
+    vowel_count = [vowel_count + 1 for letter in word if letter in 'aeiou']
+    return f'There are {sum(vowel_count)} vowels in "{word}"'
+
+
+
+
+
+
+
+#  @app.route('/books', methods=['POST'])
+#     def create_book():
+#         connection = get_flask_database_connection(app)
+#         repository = BookRepository(connection)
+#         book = Book(None, request.form['title'], request.form['author_name'])
+#         book = repository.create(book)
+#         return "Book added successfully"
+
 
 # @app.route('/hello', methods=['GET'])
 # def hello():curl
