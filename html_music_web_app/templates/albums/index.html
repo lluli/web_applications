@@ -1,0 +1,40 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Albums</h1>
+
+    <div>
+      Title: Janky Star
+      Released: 2022
+    </div>
+
+    <div>
+      Title: Malibu
+      Released: 2016
+    </div>
+
+    <!-- ... -->
+  </body>
+</html>
+
+
+
+
+
+<html>
+  <head></head>
+  <body>
+    <h1>Albums</h1>
+    <ul>
+      <!-- We'll use Jinja's `for` loop to iterate over all books -->
+      {% for album in albums %}
+        <li>
+          <!-- We can use {{ placeholders }} in HTML attributes too -->
+          <a href="/albums/{{album.id}}">{{album.title}} released in {{album.release_year}}</a>
+        </li>
+      {% endfor %}
+      <!-- Jinja isn't Python, so we need an endfor to close the loop -->
+    </ul>
+    <!-- ... -->
+  </body>
+</html>
